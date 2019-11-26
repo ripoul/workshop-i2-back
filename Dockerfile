@@ -13,7 +13,8 @@ RUN pip install -r requirements.txt
 #Install tesseract
 RUN apt-get update -qqy && apt-get install -qqy \
         tesseract-ocr \
-        libtesseract-dev
+        libtesseract-dev \ 
+        tesseract-ocr-fra
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
