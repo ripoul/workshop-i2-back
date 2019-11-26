@@ -28,5 +28,6 @@ def index(request):
             raw_data = (pytesseract.image_to_string(image, lang="fra"))
             return HttpResponse(raw_data)
         except Exception as e:
-            return HttpResponse(e, status=500)
+            print(e)
+            return HttpResponse(str(e), status=500)
     return HttpResponse("Hello, world. You're at the polls index.")
