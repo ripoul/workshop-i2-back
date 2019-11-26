@@ -2,9 +2,10 @@ import json
 import io
 import base64
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.views.decorators.http import require_http_methods
 from analyser.models import UserData
 from analyser.utils import extract_keywords
 
@@ -15,7 +16,7 @@ except ImportError:
 import pytesseract
 
 
-# Create your views here.
+@require_http_methods(["OPTIONS", "POST"])
 @method_decorator(csrf_exempt, name='dispatch')
 def index(request):
     if request.method == 'POST':
@@ -32,4 +33,17 @@ def index(request):
         keywords_list = json.dumps(extract_keywords(raw_data))
         UserData.objects.create(keywords=keywords_list)
         return HttpResponse(raw_data)
+    return HttpResponse("Hello, world. You're at the polls index.")
+
+@require_http_methods(["GET"])
+@method_decorator(csrf_exempt, name='dispatch')
+def search(request):
+    if request.method == 'GET':
+        search_keyword = request.GET.get("keyword", None)
+        if not search_keyword:
+            return HttpResponseBadRequest("no keywords")
+
+        matching_user_data = UserData.objects.filter(keywords__icontains=search_keyword)
+
+        return JsonResponse([json.loads(user_data.keywords) for user_data in matching_user_data], safe=False)
     return HttpResponse("Hello, world. You're at the polls index.")
