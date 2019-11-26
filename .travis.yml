@@ -10,7 +10,7 @@ script:
 deploy:
   provider: gae
   keyfile: workshop-epsi-i2-03a4a922966e.json
-  project: workshop-i2-epsi
+  project: workshop-epsi-i2
   on:
     branch: master
     python: '3.7'
