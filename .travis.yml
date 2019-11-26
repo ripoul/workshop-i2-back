@@ -1,0 +1,20 @@
+dist: xenial
+language: python
+python:
+- '3.7'
+cache: pip
+install:
+- pip install -r requirements.txt
+script:
+- echo fake sript
+deploy:
+  provider: gae
+  keyfile: workshop-i2-epsi-bf65b3ffb36b.json
+  project: workshop-i2-epsi
+  on:
+    branch: master
+    python: '3.7'
+before_install:
+- openssl aes-256-cbc -K $encrypted_a3b9211a230f_key -iv $encrypted_a3b9211a230f_iv
+  -in workshop-i2-epsi-bf65b3ffb36b.json.enc -out workshop-i2-epsi-bf65b3ffb36b.json
+  -d
