@@ -1,4 +1,4 @@
-runtime: nodejs
+runtime: python37
 env: flex
 
 manual_scaling:
