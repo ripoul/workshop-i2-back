@@ -29,9 +29,9 @@ def index(request):
         image = Image.open(io.BytesIO(base64.b64decode(imgstr)))
 
         raw_data = (pytesseract.image_to_string(image, lang="fra"))
-        keywords_list = json.dumps(extract_keywords(raw_data))
+        keywords_list = extract_keywords(raw_data)
         if len(keywords_list)>0:
-            UserData.objects.create(keywords=keywords_list)
+            UserData.objects.create(keywords=json.dumps(keywords_list))
         else:
             raise Exception("pas de keyword detecté") 
         return HttpResponse(raw_data)
