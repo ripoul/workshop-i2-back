@@ -35,7 +35,7 @@ def index(request):
         return HttpResponse(raw_data)
     except Exception as e:
         traceback.print_exc()
-        return HttpResponse(str(e), status=500)
+        return HttpResponse(str(e), status=400)
 
 @require_http_methods(["GET"])
 @method_decorator(csrf_exempt, name='dispatch')
