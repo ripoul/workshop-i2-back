@@ -5,4 +5,4 @@ def extract_keywords(raw_text):
     """
     raw_keywords = raw_text.split(" ")
     unique_keywords = list(set(raw_keywords))
-    return raw_keywords
+    return unique_keywords
