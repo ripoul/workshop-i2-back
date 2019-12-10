@@ -6,9 +6,6 @@
   <a href="https://twitter.com/ripoulNantes">
     <img alt="Twitter: ripoulNantes" src="https://img.shields.io/twitter/follow/ripoulNantes.svg?style=social" target="_blank" />
   </a>
-  <a href="https://travis-ci.org/ripoul/workshop-i2-back">
-    <img alt="Twitter: ripoulNantes" src="https://travis-ci.org/ripoul/workshop-i2-back.svg?branch=master" target="_blank" />
-  </a>
 </p>
 
 ## Install
